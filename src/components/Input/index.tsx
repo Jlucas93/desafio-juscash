@@ -8,7 +8,7 @@ import {
   StyledInput,
 } from './styles';
 
-interface Props extends InputHTMLAttributes<HTMLInputElement> {
+interface IProps extends InputHTMLAttributes<HTMLInputElement> {
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
   type:
@@ -25,7 +25,7 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
   fullWidth?: boolean;
 }
 
-const Input = forwardRef<HTMLInputElement, Props>(
+const Input = forwardRef<HTMLInputElement, IProps>(
   (
     {
       leftIcon,
@@ -36,7 +36,7 @@ const Input = forwardRef<HTMLInputElement, Props>(
       fullWidth,
       isRequired = false,
       ...inputProps
-    }: Props,
+    }: IProps,
     ref,
   ) => {
     return (

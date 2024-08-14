@@ -15,20 +15,18 @@ const handleUpdateFormSchemaInputNode = z.object({
   password: z.string().optional().nullable(),
 });
 
-export type HandleUpdateFormData = z.infer<
-  typeof handleUpdateFormSchemaInputNode
->;
+type HandleFormData = z.infer<typeof handleUpdateFormSchemaInputNode>;
 
 export default function LoginForm() {
   const navigate = useNavigate();
 
-  const { handleSubmit, register } = useForm<HandleUpdateFormData>({
+  const { handleSubmit, register } = useForm<HandleFormData>({
     resolver: zodResolver(handleUpdateFormSchemaInputNode),
   });
 
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
-  const handleFormSubmit: SubmitHandler<HandleUpdateFormData> = (data) => {
+  const handleFormSubmit: SubmitHandler<HandleFormData> = (data) => {
     const user = JSON.parse(localStorage.getItem('@user') || '');
 
     if (user && user.email === data.email && user.password === data.password) {
@@ -71,7 +69,7 @@ export default function LoginForm() {
       />
 
       <div className="register-wrapper">
-        <button onClick={() => navigate('/signup')}>
+        <button onClick={() => navigate('/')}>
           Não tem conta? Crie sua conta
         </button>
       </div>

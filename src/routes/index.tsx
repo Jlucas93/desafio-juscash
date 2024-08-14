@@ -17,8 +17,8 @@ export default function routes() {
   return (
     <Suspense fallback={<h1>Rendering...</h1>}>
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/signup" element={<SignUP />} />
+        <Route path="/" element={<SignUP />} />
+        <Route path="/login" element={<Login />} />
         {listRoutes.map((route) => {
           return (
             <Route

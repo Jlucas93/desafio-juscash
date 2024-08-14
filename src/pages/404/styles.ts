@@ -1,17 +1,22 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  height: 100vh;
+
   display: flex;
   justify-content: center;
-  flex-direction: column;
   align-items: center;
-  height: 100vh;
+  flex-direction: row;
+
   background-color: var(--color-white);
   color: var(--color-gray-900);
-`;
 
-export const Text = styled.p`
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 1rem;
+  font-size: var(--font-size-xl2);
+
+  gap: var(--spacing-s5);
+
+  & span {
+    font-weight: bold;
+    color: red;
+  }
 `;

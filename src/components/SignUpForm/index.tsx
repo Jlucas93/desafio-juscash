@@ -36,7 +36,7 @@ const formschema = z
     path: ['confirmPassword'],
   });
 
-export type HandleUpdateFormData = z.infer<typeof formschema>;
+type HandleFormData = z.infer<typeof formschema>;
 
 export default function SignUpForm() {
   const navigate = useNavigate();
@@ -45,7 +45,7 @@ export default function SignUpForm() {
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm<HandleUpdateFormData>({
+  } = useForm<HandleFormData>({
     resolver: zodResolver(formschema),
   });
 
@@ -53,9 +53,9 @@ export default function SignUpForm() {
   const [showConfirmPassword, setConfirmShowPassword] =
     useState<boolean>(false);
 
-  const handleFormSubmit: SubmitHandler<HandleUpdateFormData> = (data) => {
+  const handleFormSubmit: SubmitHandler<HandleFormData> = (data) => {
     localStorage.setItem('@user', JSON.stringify(data));
-    navigate('/');
+    navigate('/login');
   };
 
   return (
@@ -123,7 +123,7 @@ export default function SignUpForm() {
       ) : null}
 
       <div className="register-wrapper">
-        <button type="button" onClick={() => navigate('/')}>
+        <button type="button" onClick={() => navigate('/login')}>
           Já possui uma conta? Fazer o login
         </button>
       </div>

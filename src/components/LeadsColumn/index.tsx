@@ -2,7 +2,7 @@ import React from 'react';
 
 import LeadCard from '../LeadCards';
 import { Column, ColumnTitle } from './styles';
-interface LeadColumnProps {
+interface ILeadColumnProps {
   title: string;
   leads: { id: string; name: string }[];
   onDrop: (event: React.DragEvent<HTMLDivElement>, column: string) => void;
@@ -14,7 +14,7 @@ export default function LeadColumn({
   leads,
   onDrop,
   onDragStart,
-}: LeadColumnProps) {
+}: ILeadColumnProps) {
   return (
     <Column
       className="lead-column"

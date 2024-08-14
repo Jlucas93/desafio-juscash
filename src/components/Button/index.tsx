@@ -2,7 +2,7 @@ import { CSSProperties, forwardRef, ReactNode } from 'react';
 
 import { Container } from './styles';
 
-interface ButtonDefaultRootProps {
+interface IButtonDefaultRootProps {
   size?: 'sm' | 'md' | 'lg';
   full?: boolean;
   type?: 'button' | 'submit' | 'reset';
@@ -12,7 +12,7 @@ interface ButtonDefaultRootProps {
   style?: CSSProperties;
 }
 
-const Button = forwardRef<HTMLButtonElement, ButtonDefaultRootProps>(
+const Button = forwardRef<HTMLButtonElement, IButtonDefaultRootProps>(
   (
     {
       size = 'md',
@@ -23,7 +23,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonDefaultRootProps>(
       children,
       style,
       ...rest
-    }: ButtonDefaultRootProps,
+    }: IButtonDefaultRootProps,
     ref,
   ) => {
     return (

@@ -38,7 +38,7 @@ export const Form = styled.form`
     }
   }
 
-  @media screen and (max-width: 1600px) {
+  @media screen and (max-width: 769px) {
     width: 100%;
   }
 `;

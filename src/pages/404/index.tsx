@@ -1,9 +1,9 @@
-import { Container, Text } from './styles';
+import { Container } from './styles';
 
 export function PageNotFound() {
   return (
     <Container>
-      <Text>Página não existe</Text>
+      <span>404</span>|<p>Página não encontrada</p>
     </Container>
   );
 }
