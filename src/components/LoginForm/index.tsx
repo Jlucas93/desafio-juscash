@@ -1,9 +1,11 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import Button from 'components/Button';
+import * as Icons from 'components/Icons';
 import Input from 'components/Input';
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { z } from 'zod';
 
 import { Form } from './styles';
@@ -17,21 +19,23 @@ export type HandleUpdateFormData = z.infer<
   typeof handleUpdateFormSchemaInputNode
 >;
 
-export default function SignUpForm() {
+export default function LoginForm() {
   const navigate = useNavigate();
 
-  const {
-    handleSubmit,
-    register,
-    // formState: { errors },
-  } = useForm<HandleUpdateFormData>({
+  const { handleSubmit, register } = useForm<HandleUpdateFormData>({
     resolver: zodResolver(handleUpdateFormSchemaInputNode),
   });
 
-  const [showPassword] = useState<boolean>(false);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const handleFormSubmit: SubmitHandler<HandleUpdateFormData> = (data) => {
-    console.log(data);
+    const user = JSON.parse(localStorage.getItem('@user') || '');
+
+    if (user && user.email === data.email && user.password === data.password) {
+      return navigate('/leads');
+    }
+
+    toast.error('Usuário ou senha inválidos');
   };
 
   return (
@@ -49,7 +53,7 @@ export default function SignUpForm() {
         label="E-mail:"
         type="email"
         required
-        {...register}
+        {...register('email')}
       />
 
       <Input
@@ -58,15 +62,12 @@ export default function SignUpForm() {
         input_name="password"
         type={showPassword ? 'text' : 'password'}
         required
-        {...register}
-        // rightIcon={
-        //   <IconButton
-        //     icon={showPassword ? 'eye' : 'eyeslash'}
-        //     size="xs"
-        //     variant="quaternary"
-        //     onClick={() => setShowPassword(!showPassword)}
-        //   />
-        // }
+        rightIcon={
+          <button type="button" onClick={() => setShowPassword(!showPassword)}>
+            {showPassword ? <Icons.Eye /> : <Icons.EyeSlash />}
+          </button>
+        }
+        {...register('password')}
       />
 
       <div className="register-wrapper">

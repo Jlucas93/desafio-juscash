@@ -1,12 +1,11 @@
-import { SignUP } from 'pages';
+import { Leads } from 'pages';
 import { IRoutesProps } from 'routes';
 
 export default [
   {
     id: crypto.randomUUID(),
-    path: '/administration',
-    element: <SignUP />,
+    path: '/leads',
+    element: <Leads />,
     isPrivate: true,
-    profiles: ['admin', 'superAdmin'],
   },
 ] as IRoutesProps[];

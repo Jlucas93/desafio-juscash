@@ -15,14 +15,8 @@ export default function ConfigRoute({ isPrivate, children }: IProps) {
       return <Navigate to="/" replace />;
     }
 
-    return <Navigate to="/403" replace />;
+    return children;
   }
 
-  if (!isPrivate) {
-    if (!user) {
-      return children;
-    }
-
-    return <Navigate to="/dashboard" replace />;
-  }
+  return children;
 }

@@ -16,6 +16,28 @@ export const Form = styled.form`
   border: 1px solid transparent;
   border-radius: var(--border-radius);
 
+  & .image-container {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: var(--spacing-s4);
+  }
+
+  & .error-container {
+    width: 100%;
+
+    display: flex;
+    align-self: center;
+    justify-content: flex-start;
+
+    & span {
+      color: red;
+    }
+  }
+
   & .register-wrapper {
     width: 100%;
 
@@ -26,11 +48,9 @@ export const Form = styled.form`
     & button {
       text-decoration: underline;
     }
+  }
 
-    & .image-container {
-      width: 100%;
-      background-color: red;
-      margin-bottom: 20rem;
-    }
+  @media screen and (max-width: 1600px) {
+    width: 100%;
   }
 `;
