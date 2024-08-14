@@ -1,5 +1,3 @@
-// import Button from 'components/Button';
-// import * as Icons from 'components/Icons';
 import Modal from 'components/Modal';
 
 import { Container } from './styles';

@@ -1,3 +1,4 @@
+import * as Icons from 'components/Icons';
 import { ReactNode } from 'react';
 import ReactDOM from 'react-dom';
 
@@ -20,9 +21,11 @@ export default function Modal({
 
   return ReactDOM.createPortal(
     <Overlay onClick={onClose}>
-      <Content onClick={(e) => e.stopPropagation()}>
+      <Content onClick={(element) => element.stopPropagation()}>
         {hasCloseButton ? (
-          <CloseButton onClick={onClose}>&times;</CloseButton>
+          <CloseButton onClick={onClose}>
+            <Icons.Close />
+          </CloseButton>
         ) : null}
         {children}
       </Content>
