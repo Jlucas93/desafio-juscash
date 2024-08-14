@@ -1,4 +1,4 @@
-import React from 'react';
+import { ReactNode } from 'react';
 import ReactDOM from 'react-dom';
 
 import { CloseButton, Content, Overlay } from './styles';
@@ -6,16 +6,24 @@ import { CloseButton, Content, Overlay } from './styles';
 interface IModalProps {
   isOpen: boolean;
   onClose: () => void;
-  children: React.ReactNode;
+  children: ReactNode;
+  hasCloseButton?: boolean;
 }
 
-export default function Modal({ isOpen, onClose, children }: IModalProps) {
+export default function Modal({
+  isOpen,
+  onClose,
+  children,
+  hasCloseButton = true,
+}: IModalProps) {
   if (!isOpen) return null;
 
   return ReactDOM.createPortal(
     <Overlay onClick={onClose}>
       <Content onClick={(e) => e.stopPropagation()}>
-        <CloseButton onClick={onClose}>&times;</CloseButton>
+        {hasCloseButton ? (
+          <CloseButton onClick={onClose}>&times;</CloseButton>
+        ) : null}
         {children}
       </Content>
     </Overlay>,
