@@ -27,7 +27,8 @@ export default function LoginForm() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const handleFormSubmit: SubmitHandler<HandleFormData> = (data) => {
-    const user = JSON.parse(localStorage.getItem('@user') || '');
+    const userString = localStorage.getItem('@user');
+    const user = userString ? JSON.parse(userString) : null;
 
     if (user && user.email === data.email && user.password === data.password) {
       return navigate('/leads');

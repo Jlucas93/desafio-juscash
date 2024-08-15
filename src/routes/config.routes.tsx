@@ -8,7 +8,7 @@ interface IProps {
 }
 
 export default function ConfigRoute({ isPrivate, children }: IProps) {
-  const user = JSON.parse(localStorage.getItem('@user') || '{}');
+  const user = JSON.parse(localStorage.getItem('@user') || 'null');
 
   if (isPrivate) {
     if (!user) {
