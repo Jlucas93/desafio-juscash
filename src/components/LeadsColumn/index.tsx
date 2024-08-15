@@ -1,12 +1,15 @@
+import { ILead } from 'dtos';
 import React from 'react';
 
 import LeadCard from '../LeadCards';
 import { Column, ColumnTitle } from './styles';
+
 interface ILeadColumnProps {
   title: string;
-  leads: { id: string; name: string }[];
+  leads: ILead[];
   onDrop: (event: React.DragEvent<HTMLDivElement>, column: string) => void;
   onDragStart: (event: React.DragEvent<HTMLDivElement>, leadId: string) => void;
+  setSelectedLead: (lead: ILead) => void;
 }
 
 export default function LeadColumn({
@@ -14,6 +17,7 @@ export default function LeadColumn({
   leads,
   onDrop,
   onDragStart,
+  setSelectedLead,
 }: ILeadColumnProps) {
   return (
     <Column
@@ -26,8 +30,9 @@ export default function LeadColumn({
         <LeadCard
           key={lead.id}
           leadName={lead.name}
-          leadId={lead.id}
+          lead={lead}
           onDragStart={onDragStart}
+          setSelectedLead={setSelectedLead}
         />
       ))}
     </Column>

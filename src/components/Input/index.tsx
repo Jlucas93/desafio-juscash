@@ -18,6 +18,7 @@ interface IProps extends InputHTMLAttributes<HTMLInputElement> {
     | 'number'
     | 'time'
     | 'date'
+    | 'phone'
     | 'datetime-local';
   label?: string | boolean;
   input_name?: string;

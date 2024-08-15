@@ -23,7 +23,7 @@ export const Content = styled.div`
 
   background: var(--color-white);
 
-  padding: var(--spacing-s8);
+  padding: var(--spacing-s1);
 
   border-radius: var(--border-radius);
 
@@ -33,12 +33,17 @@ export const Content = styled.div`
 export const CloseButton = styled.button`
   position: absolute;
 
-  top: 5px;
+  top: 15px;
   right: 10px;
 
-  background: none;
+  display: flex;
+  align-items: center;
 
-  border: none;
+  color: var(--color-gray-700);
+  background-color: var(--color-gray-300);
+
+  border: 1px solid transparent;
+  border-radius: 50%;
 
   font-size: var(--font-size-xl2);
 

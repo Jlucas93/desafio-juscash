@@ -5,7 +5,11 @@ import { useState } from 'react';
 
 import { Container } from './styles';
 
-export default function LeadHeader() {
+interface ILeadHeaderProps {
+  handleAddLead: () => void;
+}
+
+export default function LeadHeader({ handleAddLead }: ILeadHeaderProps) {
   const [openModal, setOpenModal] = useState(false);
 
   return (
@@ -26,6 +30,7 @@ export default function LeadHeader() {
 
       {openModal ? (
         <LeadModal
+          handleAddLead={() => handleAddLead()}
           isModalOpen={openModal}
           closeModal={() => setOpenModal(false)}
         />

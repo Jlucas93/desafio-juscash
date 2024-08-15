@@ -10,12 +10,15 @@ export const Container = styled.button`
   align-items: center;
   gap: var(--spacing-s3);
 
-  min-width: 10%;
+  min-width: 10rem;
+
   border-radius: var(--border-radius);
 
   transition: background-color var(300ms) ease-out;
 
   color: var(--color-white);
+
+  font-size: var(--font-size-lg);
 
   &:disabled {
     cursor: not-allowed;
