@@ -3,7 +3,7 @@ import LeadModal from 'components/LeadModal';
 import LeadColumn from 'components/LeadsColumn';
 import { ILead } from 'dtos';
 import React, { useEffect, useState } from 'react';
-import { getLeads } from 'services/leadService';
+import { getLeads, updateLead } from 'services/leadService';
 
 import { Container, LeadsBoard } from './styles';
 
@@ -13,10 +13,7 @@ export function Leads() {
   const [leads, setLeads] = useState<ILead[]>([]);
   const [selectedLead, setSelectedLead] = useState<ILead | null>(null);
   const [openModal, setOpenModal] = useState(false);
-  const [draggedLead, setDraggedLead] = useState<{
-    id: string;
-    status: string;
-  } | null>(null);
+  const [draggedLead, setDraggedLead] = useState<ILead | null>(null);
 
   function handleDragStart(
     event: React.DragEvent<HTMLDivElement>,
@@ -34,6 +31,7 @@ export function Leads() {
     targetStatus: string,
   ) {
     event.preventDefault();
+
     if (draggedLead) {
       const currentIndex = statusOrder.indexOf(draggedLead.status);
       const targetIndex = statusOrder.indexOf(targetStatus);
@@ -52,10 +50,15 @@ export function Leads() {
           lead.id === draggedLead.id ? { ...lead, status: targetStatus } : lead,
         ),
       );
+
+      updateLead({
+        lead: { ...draggedLead, status: targetStatus },
+        email: draggedLead.email,
+      });
+
       setDraggedLead(null);
     }
   }
-
   function fetchLeads() {
     setLeads(getLeads());
   }

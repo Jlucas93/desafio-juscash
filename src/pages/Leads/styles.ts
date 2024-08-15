@@ -9,6 +9,7 @@ export const Container = styled.div`
   justify-content: center;
   flex-direction: column;
 `;
+
 export const LeadsBoard = styled.div`
   width: 100%;
   height: 85%;

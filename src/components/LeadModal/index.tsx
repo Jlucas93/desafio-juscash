@@ -134,7 +134,7 @@ export default function LeadModal({
             render={({ field: { value, onChange } }) => (
               <CheckBox
                 label={'Todos'}
-                isDisabled={lead ? true : false}
+                disabled={lead ? true : false}
                 checked={value ? value : false}
                 onChange={(element) => {
                   onChange(element);

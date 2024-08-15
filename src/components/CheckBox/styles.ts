@@ -27,18 +27,10 @@ export const Container = styled.label`
     vertical-align: middle;
     transition: background 0.1s ease;
     cursor: pointer;
-  }
 
-  & .disabaledCbx {
-    position: relative;
-    top: 0;
-    width: 20px;
-    height: 20px;
-    border: 1px solid var(--color-gray-500);
-    border-radius: 3px;
-    vertical-align: middle;
-    transition: background 0.1s ease;
-    cursor: not-allowed;
+    &.disabaled {
+      cursor: not-allowed;
+    }
   }
 
   & .cbx:after {

@@ -26,6 +26,8 @@ export const Container = styled.div`
   & .button-container {
     width: 100%;
 
+    padding: var(--spacing-s3);
+
     display: flex;
     align-items: center;
     justify-content: flex-end;

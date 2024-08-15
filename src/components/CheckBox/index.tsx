@@ -25,7 +25,7 @@ export default function CheckBox({
         checked={checked}
         {...rest}
       />
-      <span className={isDisabled ? 'disabaledCbx' : 'cbx'} />
+      <span className={isDisabled ? 'disabaled cbx' : 'cbx'} />
       {label ? <p className="lbl">{label}</p> : null}
     </Container>
   );

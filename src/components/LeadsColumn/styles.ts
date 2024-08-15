@@ -12,6 +12,8 @@ export const Column = styled.div`
 
   gap: var(--spacing-s3);
 
+  padding: 1px;
+
   & .cards-container {
     display: flex;
     flex-direction: column;
