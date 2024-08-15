@@ -14,13 +14,13 @@ Antes de começar, verifique se você atendeu aos seguintes requisitos:
 
 Para instalar o projeto, siga estas etapas:
 
-- Primeiro clone o repositório:
+- Clone o repositório:
 
 ```
-git clone https://github.com/TopZap/crm-greenchat.git
+git clone https://github.com/Jlucas93/desafio-juscash.git
 ```
 
-- Segundo abre o projeto no VSCode e instale as depedências com o gerenciador de pacote de sua preferência, mas recomendo usar npm ou yarn
+- Abra o projeto no VSCode(ou outra IDE de sua preferência) e instale as depedências com o gerenciador de pacote de sua preferência(recomendado usar npm ou yarn)
 
 ```
 npm install
@@ -44,11 +44,11 @@ yarn dev
 
 ## 📁 Pastas
 
-- pages: Páginas do projeto.
-- routes: Todas as rotas e configurações do projeto.
-- services: Todas as funções de cada rota do sistema.
-- style: Estilização global do CSS.
-- components: Todos os componentes do app, como botões, Modais, Inputs e componentes da página.
+- Pages: Páginas do projeto.
+- Routes: Todas as rotas e configurações do projeto.
+- Services: Todas as funções de cada rota do sistema.
+- Style: Estilização global do CSS.
+- Components: Todos os componentes do app, como botões, Modais, Inputs e componentes da página.
 
 ## 📖 Dependências
 
