@@ -1,4 +1,4 @@
-# Desafio JusFy
+# Desafio JusCash
 
 Aplicativo para genrenciar leads, sendo possível 'arrastar' os leads para a etapa desejada.
 
