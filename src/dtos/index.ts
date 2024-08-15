@@ -3,4 +3,10 @@ export interface ILead {
   name: string;
   email: string;
   status: string;
+  phone: string;
+  allOptions: boolean;
+  creditAuthor: boolean;
+  honorSucumbencial: boolean;
+  honorDative: boolean;
+  honorContractual: boolean;
 }

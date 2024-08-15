@@ -129,7 +129,7 @@ export default function SignUpForm() {
       </div>
 
       <Button type="submit" full>
-        Entrar
+        Criar conta
       </Button>
     </Form>
   );

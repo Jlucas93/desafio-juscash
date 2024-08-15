@@ -1,6 +1,12 @@
 import styled from 'styled-components';
 
 export const Card = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: bold;
+
   padding: var(--spacing-s5);
 
   background-color: var(--color-gray-400);
@@ -15,19 +21,12 @@ export const Card = styled.div`
 
   border: 1px solid transparent;
 
-  &:hover {
-    background-color: var(--color-gray-1000);
-    color: var(--color-white);
-  }
-
   &:active {
     background-color: #e9ecef;
     border-color: #007bff;
   }
 
   &.dragging {
-    opacity: 0.5;
-
     color: var(--color-back);
 
     background-color: #e9ecef;

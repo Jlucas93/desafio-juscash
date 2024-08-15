@@ -22,7 +22,12 @@ export default function LeadHeader({ handleAddLead }: ILeadHeaderProps) {
       </div>
 
       <div className="button-container">
-        <Button type="submit" full onClick={() => setOpenModal(true)}>
+        <Button
+          variant="secondary"
+          type="submit"
+          full
+          onClick={() => setOpenModal(true)}
+        >
           <Icons.Add />
           Novo Lead
         </Button>

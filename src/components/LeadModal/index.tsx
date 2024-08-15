@@ -4,8 +4,9 @@ import CheckBox from 'components/CheckBox';
 import Input from 'components/Input';
 import Modal from 'components/Modal';
 import { ILead } from 'dtos';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
+import { addLead, getLeadsByEmail, updateLead } from 'services/leadService';
 import { z } from 'zod';
 
 import { Form } from './styles';
@@ -23,6 +24,9 @@ const handleUpdateFormSchemaInputNode = z.object({
   phone: z.string().min(8, 'Número muito curto'),
   allOptions: z.boolean().default(false),
   creditAuthor: z.boolean(),
+  honorSucumbencial: z.boolean(),
+  honorDative: z.boolean(),
+  honorContractual: z.boolean(),
 });
 
 type HandleFormData = z.infer<typeof handleUpdateFormSchemaInputNode>;
@@ -36,29 +40,50 @@ export default function LeadModal({
   const { handleSubmit, register, control, getValues, setValue } =
     useForm<HandleFormData>({
       resolver: zodResolver(handleUpdateFormSchemaInputNode),
+      defaultValues: {
+        name: lead ? lead.name : '',
+        email: lead ? lead.email : '',
+        phone: lead ? lead.phone : '',
+        allOptions: lead ? lead.allOptions : true,
+        creditAuthor: lead ? lead.creditAuthor : true,
+        honorSucumbencial: lead ? lead.honorSucumbencial : true,
+        honorDative: lead ? lead.honorDative : true,
+        honorContractual: lead ? lead.honorContractual : true,
+      },
     });
 
   function handleAllCheckBox() {
     const alloptions = getValues('allOptions');
 
     setValue('creditAuthor', alloptions);
+    setValue('honorContractual', alloptions);
+    setValue('honorSucumbencial', alloptions);
+    setValue('honorDative', alloptions);
   }
 
-  const handleFormSubmit: SubmitHandler<HandleFormData> = (data) => {
-    const localLeads = JSON.parse(localStorage.getItem('@leads') || '{}');
+  function handleFormSubmit(data: HandleFormData) {
+    const existingLead = getLeadsByEmail(data.email);
 
-    localLeads.push({
-      id: crypto.randomUUID(),
-      name: data.name,
-      status: 'potential',
-    });
+    if (lead) {
+      updateLead({ lead: { ...lead, ...data }, email: lead.email });
 
-    localStorage.setItem('@leads', JSON.stringify(localLeads));
+      toast.success('Lead atualizado com sucesso');
+    } else {
+      if (existingLead) toast.error('Já existe um lead com este e-mail');
 
-    toast.success('Usuário cadastrado com sucesso');
+      addLead({
+        id: crypto.randomUUID(),
+        status: 'potential',
+        ...data,
+      });
+
+      toast.success('Lead cadastrado com sucesso');
+    }
+
     handleAddLead();
-  };
-  console.log({ lead });
+    closeModal();
+  }
+
   return (
     <Modal isOpen={isModalOpen} onClose={closeModal}>
       <Form onSubmit={handleSubmit(handleFormSubmit)}>
@@ -70,6 +95,7 @@ export default function LeadModal({
 
           <Input
             isRequired
+            disabled={lead ? true : false}
             input_name="name"
             label="Nome Completo*"
             type="text"
@@ -79,6 +105,7 @@ export default function LeadModal({
 
           <Input
             isRequired
+            disabled={lead ? true : false}
             input_name="email"
             label="E-mail*"
             type="email"
@@ -88,6 +115,7 @@ export default function LeadModal({
 
           <Input
             isRequired
+            disabled={lead ? true : false}
             input_name="name"
             label="Telefone*"
             type="phone"
@@ -106,7 +134,8 @@ export default function LeadModal({
             render={({ field: { value, onChange } }) => (
               <CheckBox
                 label={'Todos'}
-                checked={value}
+                isDisabled={lead ? true : false}
+                checked={value ? value : false}
                 onChange={(element) => {
                   onChange(element);
                   handleAllCheckBox();
@@ -116,21 +145,74 @@ export default function LeadModal({
           />
 
           <Controller
+            name="honorSucumbencial"
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <CheckBox
+                label={'Honorários Sucumbenciais'}
+                checked={value ? value : false}
+                isDisabled={lead ? true : false}
+                onChange={(element) => {
+                  onChange(element);
+                  setValue('allOptions', false);
+                }}
+              />
+            )}
+          />
+          <Controller
+            name="honorContractual"
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <CheckBox
+                label={'Honorários contratatuais'}
+                checked={value ? value : false}
+                isDisabled={lead ? true : false}
+                onChange={(element) => {
+                  onChange(element);
+                  setValue('allOptions', false);
+                }}
+              />
+            )}
+          />
+          <Controller
+            name="honorDative"
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <CheckBox
+                label={'Honorários Dativos'}
+                checked={value ? value : false}
+                isDisabled={lead ? true : false}
+                onChange={(element) => {
+                  onChange(element);
+                  setValue('allOptions', false);
+                }}
+              />
+            )}
+          />
+          <Controller
             name="creditAuthor"
             control={control}
             render={({ field: { onChange, value } }) => (
               <CheckBox
-                label={'domlimax'}
-                checked={value}
-                onChange={onChange}
+                label={'Crédito do Autor'}
+                checked={value ? value : false}
+                isDisabled={lead ? true : false}
+                onChange={(element) => {
+                  onChange(element);
+                  setValue('allOptions', false);
+                }}
               />
             )}
           />
         </div>
 
         <div className="button-container">
-          <Button onClick={() => closeModal()}>Cancelar</Button>
-          <Button type="submit">Salvar</Button>
+          <Button variant="terciary" onClick={() => closeModal()}>
+            Cancelar
+          </Button>
+          <Button variant="secondary" type="submit">
+            Salvar
+          </Button>
         </div>
       </Form>
     </Modal>

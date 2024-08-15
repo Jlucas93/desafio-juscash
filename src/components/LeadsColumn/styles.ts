@@ -11,6 +11,15 @@ export const Column = styled.div`
   border-radius: var(--border-radius);
 
   gap: var(--spacing-s3);
+
+  & .cards-container {
+    display: flex;
+    flex-direction: column;
+
+    overflow-y: auto;
+
+    gap: var(--spacing-s3);
+  }
 `;
 
 export const ColumnTitle = styled.h3`

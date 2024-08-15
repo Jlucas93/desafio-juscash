@@ -5,33 +5,12 @@ import { ILead } from 'dtos';
 import React, { useEffect, useState } from 'react';
 import { getLeads } from 'services/leadService';
 
-import { LeadsBoard } from './styles';
-
-const initialLeads = [
-  {
-    id: '1',
-    name: 'AWS Advocacia',
-    email: 'aws@mail.com',
-    status: 'potential',
-  },
-  {
-    id: '2',
-    name: 'Ricardo Almeida Advg',
-    email: 'ricardo@mail.com',
-    status: 'confirmed',
-  },
-  {
-    id: '3',
-    name: 'Fernanda Soares ADV',
-    email: 'fernanda@mail.com',
-    status: 'analysis',
-  },
-];
+import { Container, LeadsBoard } from './styles';
 
 const statusOrder = ['potential', 'confirmed', 'analysis'];
 
 export function Leads() {
-  const [leads, setLeads] = useState(initialLeads);
+  const [leads, setLeads] = useState<ILead[]>([]);
   const [selectedLead, setSelectedLead] = useState<ILead | null>(null);
   const [openModal, setOpenModal] = useState(false);
   const [draggedLead, setDraggedLead] = useState<{
@@ -83,7 +62,7 @@ export function Leads() {
 
   function handleAddLead() {
     fetchLeads();
-    setOpenModal(false);
+    setSelectedLead(null);
   }
 
   function handleSelectedLead(lead: ILead) {
@@ -96,7 +75,7 @@ export function Leads() {
   }, []);
 
   return (
-    <>
+    <Container>
       <LeadHeader handleAddLead={() => handleAddLead()} />
       <LeadsBoard>
         <LeadColumn
@@ -130,6 +109,6 @@ export function Leads() {
           closeModal={() => setOpenModal(false)}
         />
       ) : null}
-    </>
+    </Container>
   );
 }

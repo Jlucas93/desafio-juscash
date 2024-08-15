@@ -28,6 +28,19 @@ export const Container = styled.label`
     transition: background 0.1s ease;
     cursor: pointer;
   }
+
+  & .disabaledCbx {
+    position: relative;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--color-gray-500);
+    border-radius: 3px;
+    vertical-align: middle;
+    transition: background 0.1s ease;
+    cursor: not-allowed;
+  }
+
   & .cbx:after {
     content: '';
     position: absolute;
@@ -42,20 +55,25 @@ export const Container = styled.label`
     transition: all 0.3s ease;
     transition-delay: 0.15s;
   }
+
   & .lbl {
     margin-left: 5px;
     vertical-align: middle;
     cursor: pointer;
   }
+
   & input[type='checkbox']:checked ~ .cbx {
     border-color: transparent;
     background: blue;
     animation: jelly-42 0.6s ease;
+    background: var(--color-info-base);
   }
+
   & input[type='checkbox']:checked ~ .cbx:after {
     opacity: 1;
     transform: rotate(45deg) scale(1);
   }
+
   & .cntr {
     position: absolute;
     top: 50%;

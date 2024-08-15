@@ -16,6 +16,10 @@ html {
   --color-warning-base: #FDB81E;
   --color-warning-dark: #CA9318;
 
+  --color-info-light: #76bbf7;
+  --color-info-base: #54a2c6;
+  --color-info-dark: #325676;
+
   --color-white: #ffffff;
   --color-black: #000000;
 

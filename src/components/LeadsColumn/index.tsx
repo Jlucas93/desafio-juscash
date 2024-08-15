@@ -26,15 +26,17 @@ export default function LeadColumn({
       onDragOver={(event) => event.preventDefault()}
     >
       <ColumnTitle>{title}</ColumnTitle>
-      {leads.map((lead) => (
-        <LeadCard
-          key={lead.id}
-          leadName={lead.name}
-          lead={lead}
-          onDragStart={onDragStart}
-          setSelectedLead={setSelectedLead}
-        />
-      ))}
+      <div className="cards-container">
+        {leads.map((lead) => (
+          <LeadCard
+            key={lead.id}
+            leadName={lead.name}
+            lead={lead}
+            onDragStart={onDragStart}
+            setSelectedLead={setSelectedLead}
+          />
+        ))}
+      </div>
     </Column>
   );
 }

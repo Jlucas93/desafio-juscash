@@ -10,11 +10,13 @@ interface IButtonDefaultRootProps {
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   children: ReactNode;
   style?: CSSProperties;
+  variant?: 'primary' | 'secondary' | 'terciary';
 }
 
 const Button = forwardRef<HTMLButtonElement, IButtonDefaultRootProps>(
   (
     {
+      variant = 'primary',
       size = 'md',
       full = false,
       type = 'button',
@@ -32,7 +34,7 @@ const Button = forwardRef<HTMLButtonElement, IButtonDefaultRootProps>(
           ref={ref}
           type={type}
           disabled={disabled}
-          className={`${size} ${full ? 'full' : ''}`}
+          className={`${variant}  ${size} ${full ? 'full' : ''}`}
           onClick={onClick ? onClick : undefined}
           aria-label="button-default"
           style={style}

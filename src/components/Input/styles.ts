@@ -64,6 +64,8 @@ export const StyledInput = styled.input`
 
   &:disabled {
     cursor: not-allowed;
+
+    background-color: var(--color-gray-200);
   }
 
   &::placeholder {
