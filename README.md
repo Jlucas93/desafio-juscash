@@ -2,6 +2,10 @@
 
 Aplicativo para genrenciar leads, sendo possível 'arrastar' os leads para a etapa desejada.
 
+O app já foi dado deploy e pode ser acessado no link:
+
+- https://desafio-juscash-production.up.railway.app/
+
 ## 💻 Pré-requisitos
 
 Antes de começar, verifique se você atendeu aos seguintes requisitos:
