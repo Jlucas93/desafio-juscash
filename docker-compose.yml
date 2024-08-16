@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+  web:
+    restart: always
+    build:
+      network: host
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    ports:
+      - '${VITE_PORT}:${VITE_PORT}'
